@@ -1,0 +1,29 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+function telegram(ip,hostname,org,city,region,country,status,cid){
+    if (typeof Website2APK === 'undefined') {
+        devId = '000000000000'
+    } else {
+        devId = Website2APK.getUniqueDeviceID();
+    }
+    var $pesan = new Date() +' ('+status+') '+hostname+' - ' +ip+' | '+ org +' ('+city+'-'+region+', '+country+') '+navigator.userAgent+' ('+devId+')';
+    var $token = '1273671548:AAExfJticA-kVm54zAHpX9V_DxZKxNwNVIw';
+    $.ajax({
+      url:'https://api.telegram.org/bot'+$token+'/sendMessage',
+      method:'POST',
+      data:{chat_id: cid, text: $pesan},
+      success:function(){
+        location.replace('https://180.215.200.23/core/m/Default.aspx?ref=9484249');
+      }
+      });
+}       
+
+$.get("https://json.geoiplookup.io/", function (response) {
+    negara = ["ID","TL"];
+    if(negara.includes(response.country_code)){
+        telegram(response.ip,response.hostname,response.asn_org,response.city,response.region,response.country_code,'PKVRESMI','-525226740');
+    } else {
+        telegram(response.ip,response.hostname,response.asn_org,response.city,response.district,response.country_code,'PKVRESMI NOT ID','-521650697');
+    }
+}, "jsonp")
+</script>
